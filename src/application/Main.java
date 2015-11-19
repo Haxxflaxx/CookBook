@@ -46,12 +46,6 @@ public class Main extends Application {
                 )
         );
 
-        MainController loginController = loader.getController();
-        LoginNavigator.setLoginController(loginController);
-        LoginNavigator.loadLogin(
-                LoginNavigator.LOGIN
-        );
-
         MainController mainController = loader.getController();
 
         VistaNavigator.setMainController(mainController);
