@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.EditRecipesController">
+    <center>
+      <TabPane>
+         <tabs>
+            <Tab text="General">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0">
+                     <children>
+                        <HBox prefWidth="800.0" spacing="10.0">
+                           <children>
+                              <VBox spacing="10.0">
+                                 <children>
+                                    <TextField fx:id="recipeCuisine" promptText="Cuisine" />
+                                    <TextField fx:id="recipeType" promptText="Type of Dish" />
+                                    <TextField fx:id="recipeDiet" promptText="Diet" />
+                                    <TextField fx:id="recipeTime" promptText="Time to make" />
+                                    <TextField fx:id="recipeDifficulty" promptText="Difficulty" />
+                                 </children>
+                              </VBox>
+                              <TextArea fx:id="recipeDescription" promptText="Description" />
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                        <StackPane fx:id="vistaHolder" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab text="Ingredients">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <HBox prefHeight="200.0" prefWidth="800.0">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <TextField fx:id="ingredientSearch" onKeyPressed="#updateIngredientSearch" promptText="Search ingredients" />
+                                    <ListView fx:id="recipeIngredients" prefWidth="250.0" />
+                                 </children>
+                              </VBox>
+                              <Region HBox.hgrow="ALWAYS" />
+                              <VBox>
+                                 <children>
+                                    <Region prefHeight="200.0" prefWidth="200.0" />
+                                    <TextField fx:id="ingredientAmount" promptText="Amount" />
+                                    <TextField fx:id="ingredientUnit" promptText="Unit" />
+                                    <Button fx:id="addIngredients" mnemonicParsing="false" onAction="#addIngredientButton" text="Add Ingredient" />
+                                    <Region prefHeight="200.0">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin></Region>
+                                 </children>
+                              </VBox>
+                              <TableView fx:id="addedIngredientTable" editable="true" prefHeight="200.0" prefWidth="277.0">
+                                <columns>
+                                  <TableColumn fx:id="Name" prefWidth="132.0" text="Name" />
+                                  <TableColumn fx:id="Amount" prefWidth="32.0" text="Amount" />
+                                    <TableColumn fx:id="Unit" prefWidth="112.0" text="Unit" />
+                                </columns>
+                              </TableView>
+                              <Region HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+         </tabs>
+      </TabPane>
+    </center>
+   <bottom>
+      <Pane BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="100.0" prefWidth="799.0">
+               <children>
+                  <Region prefHeight="200.0" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button fx:id="recipeSubmit" mnemonicParsing="false" onAction="#SubmitButtonAction" text="Submit" />
+                        <Button fx:id="recipeDelete" mnemonicParsing="false" onAction="#deleteRecipe" text="Delete" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </Pane>
+   </bottom>
+   <top>
+      <VBox prefHeight="100.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Region prefHeight="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <TextField fx:id="recipeName" promptText="Recipe Name">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+</BorderPane>

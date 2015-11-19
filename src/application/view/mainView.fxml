@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.MainController">
+    <top>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <MenuBar>
+                    <menus>
+                        <Menu mnemonicParsing="false" text="File">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Close" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Edit">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="Delete" />
+                            </items>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <items>
+                                <MenuItem mnemonicParsing="false" text="About" />
+                            </items>
+                        </Menu>
+                    </menus>
+                </MenuBar>
+                <HBox>
+                    <children>
+                  <VBox spacing="5.0">
+                     <children>
+                        <HBox spacing="10.0">
+                           <children>
+                              <Button fx:id="back" mnemonicParsing="false" onAction="#back" text="&lt;" />
+                              <Button fx:id="forward" mnemonicParsing="false" onAction="#forward" text="&gt;" />
+                           </children>
+                        </HBox>
+                              <TextField fx:id="recipSearch" onAction="#search" promptText="Search" />
+                     </children>
+                  </VBox>
+                    </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </VBox.margin>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+   <center>
+      <Pane>
+         <children>
+            <Separator orientation="VERTICAL" prefHeight="630.0" />
+            <Separator prefWidth="820.0" />
+            <StackPane fx:id="vistaHolder" BorderPane.alignment="CENTER" />
+         </children>
+      </Pane>
+   </center>
+   <left>
+      <VBox fx:id="browseMenu" prefWidth="175.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Separator layoutX="10.0" layoutY="115.0" prefWidth="200.0" />
+            <Label fx:id="allRecipes" onMouseClicked="#allRecipesclick" text="All Recipes">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="topRated" layoutX="10.0" layoutY="40.0" onMouseClicked="#topRatedclick" text="Top Rated">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="newRecipes" layoutX="10.0" layoutY="10.0" onMouseClicked="#newRecipesclick" text="New Recipes">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Region prefHeight="20.0">
+               <padding>
+                  <Insets left="10.0" />
+               </padding></Region>
+            <Separator layoutX="10.0" layoutY="10.0" prefWidth="200.0">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </Separator>
+            <Label fx:id="myRecipes" layoutX="10.0" layoutY="70.0" onMouseClicked="#myRecipesclick" text="My Recipes">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="addRecipe" layoutX="10.0" layoutY="137.0" onMouseClicked="#addNewRecipeclick" text="+ Add Recipe">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <ListView fx:id="recipList" maxHeight="1.0" maxWidth="1.0" prefHeight="1.0" prefWidth="1.0" VBox.vgrow="NEVER" />
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </left>
+</BorderPane>

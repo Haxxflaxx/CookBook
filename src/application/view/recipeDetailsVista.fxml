@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RecipeController">
+   <children>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="recipeName" text="Name">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="95.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font></Label>
+                     </children>
+                  </HBox>
+                  <TextArea fx:id="recipeDescription" wrapText="true" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </VBox.margin>
+                  </TextArea>
+               </children>
+            </VBox>
+            <VBox>
+               <children>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label fx:id="recipeType" text="Type" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="recipeType" text="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label fx:id="recipeCuisine" text="Cuisine" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="recipeCuisine" text="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label fx:id="recipeDifficulty" text="Difficulty" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="recipeDifficulty" text="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label fx:id="recipeTime" text="Prep time" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="recipeTime" text="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox spacing="10.0">
+                     <children>
+                        <Label fx:id="recipeDiet" text="Diet" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="recipeDiet" text="#" />
+                     </children>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </HBox>
+                  <ListView fx:id="recipeIngredients" />
+                  <Button fx:id="editRecipe" mnemonicParsing="false" onAction="#editRecipeView" text="Edit Recipe" />
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</Pane>

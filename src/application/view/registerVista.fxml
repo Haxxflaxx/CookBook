@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+    <top>
+        <VBox BorderPane.alignment="CENTER" />
+    </top>
+    <center>
+        <Pane>
+            <children>
+                <StackPane fx:id="vistaHolder" BorderPane.alignment="CENTER" />
+            <VBox spacing="10.0">
+               <children>
+                  <TextField fx:id="recipeTime" promptText="Username" />
+                  <HBox spacing="10.0">
+                     <children>
+                        <PasswordField promptText="Choose your password" />
+                        <PasswordField promptText="Confirm password" />
+                     </children>
+                  </HBox>
+                  <TextField fx:id="recipeDiet" promptText="Email" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" text="Sign up" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            </children>
+        </Pane>
+    </center>
+    <left>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <HBox />
+            </children>
+        </VBox>
+    </left>
+</BorderPane>

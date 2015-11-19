@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RecipeController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="186.0">
+         <children>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="ID" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeID" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Name" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeName" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Type" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeType" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Cuisine" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeCuisine" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Difficulty" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeDifficulty" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Prep time" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeTIme" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+            <HBox spacing="10.0">
+               <children>
+                  <Label text="Diet" />
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label fx:id="recipeDiet" text="#" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</Pane>

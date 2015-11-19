@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.SearchController">
+   <children>
+      <TableView fx:id="searchResult" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="id" prefWidth="50.0" text="ID" />
+          <TableColumn fx:id="name" prefWidth="250.0" text="Name" />
+          <TableColumn fx:id="type" prefWidth="100.0" text="Type" />
+            <TableColumn fx:id="diet" prefWidth="100.0" text="Diet" />
+            <TableColumn fx:id="cuisine" prefWidth="150.0" text="Cuisine" />
+            <TableColumn fx:id="difficulty" prefWidth="100.0" text="Difficulty" />
+            <TableColumn fx:id="prepTime" prefWidth="100.0" text="Prep Time" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>
