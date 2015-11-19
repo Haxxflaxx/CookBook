@@ -68,7 +68,7 @@ public class MainController implements Initializable {
         try {
             System.out.println("- Main updateMenuList");
 
-            dataSet = Query.fetchData("recipes", "Name");
+            dataSet = Query.fetchData("menu", "Name");
 
             for (ArrayList<String> element : dataSet){
                 itemList.add(element.get(0));
