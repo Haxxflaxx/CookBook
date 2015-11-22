@@ -80,6 +80,14 @@
                   <Insets left="10.0" right="10.0" />
                </padding>
             </Separator>
+            <Label fx:id="allRecipes1" onMouseClicked="#addNewMenuClick" text="New Menu">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
             <ListView fx:id="menuList" VBox.vgrow="ALWAYS" />
          </children>
          <BorderPane.margin>

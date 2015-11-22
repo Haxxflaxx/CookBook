@@ -118,14 +118,14 @@ public class MainController implements Initializable {
     /**
      * Button for adding new Recipes.
      */
-    public void addNewRecipeclick(){
+    public void addNewMenuClick(){
 
         try {
-            System.out.println("- addNewRecipeButton");
+            System.out.println("- addNewMenuButton");
             insertInto("Recipes", "Name", "'--New--'");
             updateMenuList();
             menuList.getSelectionModel().select("--New--");
-            System.out.println("- End of addNewRecipeButton");
+            System.out.println("- End of addNewMenuButton");
     }
         catch (SQLException e) {
             e.printStackTrace();
@@ -156,8 +156,9 @@ public class MainController implements Initializable {
      *  The browser menu
      */
     public void allRecipesclick(){
+        recipSearch.setText("");
         VistaNavigator.loadVista(
-                VistaNavigator.WELCOME
+                VistaNavigator.SEARCH
         );
 
         System.out.println("Load All Recipes");

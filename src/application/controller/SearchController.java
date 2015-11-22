@@ -111,8 +111,8 @@ public class SearchController extends NavigationController implements Initializa
         ObservableList<Recipe> items = FXCollections.observableArrayList();
 
         try {
-            dataSet = Query.fetchData("recipes", "*", condition);
-            System.out.println(condition);
+            dataSet = Query.fetchData("recipes", "*", nameCondition);
+            System.out.println(nameCondition);
 
             for (ArrayList<String> element : dataSet){
                 items.add(new Recipe(
