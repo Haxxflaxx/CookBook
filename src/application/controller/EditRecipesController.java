@@ -75,6 +75,7 @@ public class EditRecipesController extends NavigationController implements Initi
         mainController = VistaNavigator.getMainController();
         updateEditRecipeList();
         updateIngredients();
+        loadIngredients();
         Name.setCellValueFactory(
                 new PropertyValueFactory<Ingredient, String>("name")
         );
@@ -85,6 +86,37 @@ public class EditRecipesController extends NavigationController implements Initi
                 new PropertyValueFactory<Ingredient, String>("unit")
         );
         System.out.println("- End of Initialize EditRecipesController");
+    }
+
+    /*
+    TODO task implementLoad
+        Add code to suport the loading of ingredients from DB
+     */
+    private void loadIngredients() {
+        ArrayList<ArrayList<String>> dataSet;
+        ObservableList<Ingredient> items = FXCollections.observableArrayList();
+
+        String condition = "rui.IID=ingredient.ID AND RID='" + Recipe.getSelected().getId() +"'";
+        try {
+            dataSet = fetchData("rui, ingredient", "*", condition);
+
+            for (ArrayList<String> element : dataSet){
+                System.out.println();
+                for (String item : element) {
+                    System.out.print(item + " ");
+                }
+                /*items.add(
+                        new Ingredient(
+                                element.get(1),
+                                element.get(2),
+                                element.get(3)
+                        )
+                );*/
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**
