@@ -50,7 +50,7 @@ public class EditRecipesController extends NavigationController implements Initi
     @FXML
     private TextField ingredientAmount;
     @FXML
-    private TextField ingredientUnit;
+    private ChoiceBox ingredientUnit;
     @FXML
     private TextField ingredientSearch;
     @FXML
@@ -96,22 +96,23 @@ public class EditRecipesController extends NavigationController implements Initi
         ArrayList<ArrayList<String>> dataSet;
         ObservableList<Ingredient> items = FXCollections.observableArrayList();
 
-        String condition = "rui.IID=ingredient.ID AND RID='" + Recipe.getSelected().getId() +"'";
+        String condition = "rui.IID=ingredients.ID AND RID='" + Recipe.getSelected().getId() +"'";
         try {
-            dataSet = fetchData("rui, ingredient", "*", condition);
+            dataSet = fetchData("rui, ingredients", "*", condition);
 
             for (ArrayList<String> element : dataSet){
                 System.out.println();
                 for (String item : element) {
                     System.out.print(item + " ");
                 }
-                /*items.add(
+                items.add(
                         new Ingredient(
-                                element.get(1),
+                                element.get(5),
                                 element.get(2),
                                 element.get(3)
                         )
-                );*/
+                );
+                addedIngredientTable.setItems(items);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -182,7 +183,8 @@ public class EditRecipesController extends NavigationController implements Initi
         try {
             System.out.println("- SubmitButtonAction");
             updateData("Recipes", columns, values, currentRecipe);                   //Update data in columns with values
-            System.out.println("- End of SubmitButtonAction");
+
+            deleteFrom("RUI", "RID='" + recipeID + "'");
 
             for (Object o : addedIngredientTable.getItems()) {                      //Foreach object in the list, getItems
                 String iName = Name.getCellData(o).toString();                      //iName = ingredientName
@@ -198,12 +200,18 @@ public class EditRecipesController extends NavigationController implements Initi
                 System.out.println("Current ID"+ currentId);
 
                 insertInto("RUI", "RID, IID, Quantity, Unit", "'" + recipeID + "','" + currentId + "','" + iAmount + "','" + iUnit + "'");
-                                                                                    //Inserts recipe id, current id,
-            }                                                                       //amount, and unit
+
+                System.out.println("- End of SubmitButtonAction");                  //Inserts recipe id, current id,
+                }                                                                   //amount, and unit
             }
          catch (SQLException e) {
             e.printStackTrace();
         }
+
+        Recipe.setSelectedByID(recipeID);
+        VistaNavigator.loadVista(
+                VistaNavigator.RECIPE
+        );
     }
 
     /**
@@ -227,6 +235,18 @@ public class EditRecipesController extends NavigationController implements Initi
             e.printStackTrace();
         }
         recipeIngredients.setItems(itemList);                                       //Sets the Listview to show the obs arraylist
+
+        itemList.clear();
+        try {
+            dataSet = fetchData("Units", "*");
+
+            for (ArrayList<String> element: dataSet){
+                itemList.add(element.get(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ingredientUnit.setItems(itemList);
     }
 
 
@@ -238,7 +258,7 @@ public class EditRecipesController extends NavigationController implements Initi
         String selectedIngredient = recipeIngredients.getSelectionModel().getSelectedItems().toString();
         selectedIngredient = selectedIngredient.replaceAll("\\[", "").replaceAll("\\]", "");
 
-        items.add(new Ingredient(selectedIngredient, ingredientAmount.getText(), ingredientUnit.getText()));    //Creates new
+        items.add(new Ingredient(selectedIngredient, ingredientAmount.getText(), ingredientUnit.getSelectionModel().getSelectedItem().toString()));    //Creates new
         addedIngredientTable.setItems(items);               //Object of the type Ingredient and adds it to the tableView.
 
     }

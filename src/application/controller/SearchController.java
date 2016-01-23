@@ -49,11 +49,11 @@ public class SearchController extends NavigationController implements Initializa
 
         search = VistaNavigator.getMainController().getSearch();
 
-        String nameCondition = "Name LIKE '%" + search + "%' ";
-        String typeCondition = "Type LIKE '%" + search + "%' ";
-        String dietCondition = "Diet LIKE '%" + search + "%' ";
-        String cuisineCondition = "Cuisine LIKE '%" + search + "%' ";
-        String difficultyCondition = "Difficulty LIKE '%" + search + "%';";
+        nameCondition = "Name LIKE '%" + search + "%' ";
+        typeCondition = "Type LIKE '%" + search + "%' ";
+        dietCondition = "Diet LIKE '%" + search + "%' ";
+        cuisineCondition = "Cuisine LIKE '%" + search + "%' ";
+        difficultyCondition = "Difficulty LIKE '%" + search + "%';";
 
         condition = nameCondition + " OR " +
                 typeCondition + " OR " +

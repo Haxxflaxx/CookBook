@@ -170,11 +170,19 @@ public class MainController implements Initializable {
     }
 
     public void newRecipesclick(){
-        System.out.println("Load New Recipes");
+        VistaNavigator.loadVista(
+                VistaNavigator.NEWRECIPE
+        );
     }
 
     public void myRecipesclick(){
         System.out.println("Load My Recipes");
+    }
+
+    public void loadIngredientManager() {
+        VistaNavigator.loadVista(
+                VistaNavigator.INGREDIENTMGR
+        );
     }
 
 }

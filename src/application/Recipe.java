@@ -1,5 +1,10 @@
 package application;
 
+import application.dbTools.Query;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  * Created by haxxflaxx on 2015-11-09.
  *
@@ -30,6 +35,31 @@ public class Recipe {
         this.time = time;
         this.timeUnit = timeUnit;
         this.description = description;
+    }
+
+    public static void setSelectedByID(String id) {
+        ArrayList<ArrayList<String>> dataset;
+
+        try {
+            dataset = Query.fetchData("recipes", "*", "'ID'=" + id + "'");
+
+            setSelected(
+                    new Recipe(
+                        dataset.get(0).get(0),
+                        dataset.get(0).get(1),
+                        dataset.get(0).get(2),
+                        dataset.get(0).get(3),
+                        dataset.get(0).get(4),
+                        dataset.get(0).get(5),
+                        dataset.get(0).get(6),
+                        dataset.get(0).get(7),
+                        dataset.get(0).get(8),
+                        dataset.get(0).get(9)
+                    )
+            );
+        } catch (SQLException e) {
+            //e.printStackTrace();
+        }
     }
 
     public static Recipe getSelected() {

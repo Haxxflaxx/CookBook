@@ -21,7 +21,7 @@ import static application.dbTools.Query.*;
  * Created by haxxflaxx on 2015-11-03.
  */
 
-public class NewRecipesController extends NavigationController implements Initializable{
+public class NewRecipesController implements Initializable{
 
 
     MainController mainController;
@@ -73,9 +73,7 @@ public class NewRecipesController extends NavigationController implements Initia
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("Initialize EditRecipesController");
         mainController = VistaNavigator.getMainController();
-        updateEditRecipeList();
         updateIngredients();
-        loadIngredients();
         Name.setCellValueFactory(
                 new PropertyValueFactory<Ingredient, String>("name")
         );
@@ -88,101 +86,24 @@ public class NewRecipesController extends NavigationController implements Initia
         System.out.println("- End of Initialize EditRecipesController");
     }
 
-    /*
-    TODO task implementLoad
-        Add code to suport the loading of ingredients from DB
-     */
-    private void loadIngredients() {
-        ArrayList<ArrayList<String>> dataSet;
-        ObservableList<Ingredient> items = FXCollections.observableArrayList();
-
-        String condition = "rui.IID=ingredient.ID AND RID='" + Recipe.getSelected().getId() +"'";
-        try {
-            dataSet = fetchData("rui, ingredient", "*", condition);
-
-            for (ArrayList<String> element : dataSet){
-                System.out.println();
-                for (String item : element) {
-                    System.out.print(item + " ");
-                }
-                /*items.add(
-                        new Ingredient(
-                                element.get(1),
-                                element.get(2),
-                                element.get(3)
-                        )
-                );*/
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    /**
-     * Updates the fields in the editing of recipes to the selected item.
-     */
-    public void updateEditRecipeList() {
-        ArrayList<ArrayList<String>> dataSet;
-
-        String currentRecipe = Recipe.getSelected().getName();
-        String condition = "Name= '" + currentRecipe + "'";
-
-
-        try {
-            System.out.println("- UpdateEditRecipeList");
-            dataSet = fetchData("recipes", "*", condition);       //Method for fetching the recipes where
-            recipeID = dataSet.get(0).get(0);                           //name == selected recipe
-            recipeName.setText(dataSet.get(0).get(1));
-            recipeType.setText(dataSet.get(0).get(2));
-            recipeCuisine.setText(dataSet.get(0).get(3));
-            recipeDifficulty.setText(dataSet.get(0).get(4));
-            recipeTime.setText(dataSet.get(0).get(7));
-            recipeDiet.setText(dataSet.get(0).get(6));
-            recipeDescription.setText(dataSet.get(0).get(9));
-            System.out.println("- End of UpdateEditRecipeList");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    /**
-     * ButtonMethod for deleting the selected recipe
-     */
-    public void deleteRecipe() {
-
-        try {
-            System.out.println("- DeleteRecipe");
-            String criteria = "ID='" + fetchData("Recipes", "ID", "Name ='" + recipeName.getText() + "'") + "'";
-            criteria = criteria.replaceAll("\\[", "").replaceAll("\\]", "");
-            deleteFrom("Recipes", criteria);            //Delete recipes where name == selected recipe
-
-
-            System.out.println("- End of DeleteRecipe");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     /**
      * ButtonMethod for updating data into the recipes
      */
     public void SubmitButtonAction() {
-        String[] columns = {"Name", "Type", "Cuisine", "Difficulty", "Diet", "Time", "Description"};     //Array with columns
-        String[] values = {recipeName.getText(), recipeType.getText(), recipeCuisine.getText(), recipeDifficulty.getText(),
-                recipeDiet.getText(), recipeTime.getText(), recipeDescription.getText()};                //Array with Values
+        String values = "";
+        String columns = "Name, Type, Cuisine, Difficulty, Diet, Time, Description";
+        String[] fields = {recipeName.getText(), recipeType.getText(), recipeCuisine.getText(), recipeDifficulty.getText(),
+                recipeDiet.getText(), recipeTime.getText(), recipeDescription.getText()};//Array with Values
 
-        String currentRecipe = Recipe.getSelected().getName();
-        currentRecipe = "NAME='" + currentRecipe + "'";
-        currentRecipe = currentRecipe.replaceAll("\\[", "").replaceAll("\\]", "");
-
-
+        for (String value : fields) values += "'" + value + "',";
+        values = values.substring(0, values.length()-1);
 
         try {
             System.out.println("- SubmitButtonAction");
-            updateData("Recipes", columns, values, currentRecipe);                   //Update data in columns with values
+            insertInto("Recipes", columns, values);                   //Update data in columns with values
             System.out.println("- End of SubmitButtonAction");
+
+            recipeID = fetchData("recipes", "ID", "Name='" + recipeName.getText() + "'").get(0).get(0);
 
             for (Object o : addedIngredientTable.getItems()) {                      //Foreach object in the list, getItems
                 String iName = Name.getCellData(o).toString();                      //iName = ingredientName
@@ -198,12 +119,18 @@ public class NewRecipesController extends NavigationController implements Initia
                 System.out.println("Current ID"+ currentId);
 
                 insertInto("RUI", "RID, IID, Quantity, Unit", "'" + recipeID + "','" + currentId + "','" + iAmount + "','" + iUnit + "'");
+
                                                                                     //Inserts recipe id, current id,
-            }                                                                       //amount, and unit
+                }                                                                   //amount, and unit
             }
          catch (SQLException e) {
             e.printStackTrace();
         }
+
+        Recipe.setSelectedByID(recipeID);
+        VistaNavigator.loadVista(
+                VistaNavigator.RECIPE
+        );
     }
 
     /**
@@ -227,6 +154,18 @@ public class NewRecipesController extends NavigationController implements Initia
             e.printStackTrace();
         }
         recipeIngredients.setItems(itemList);                                       //Sets the Listview to show the obs arraylist
+
+        itemList.clear();
+        try {
+            dataSet = fetchData("Units", "*");
+
+            for (ArrayList<String> element: dataSet){
+                itemList.add(element.get(1));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        ingredientUnit.setItems(itemList);
     }
 
 
@@ -265,9 +204,4 @@ public class NewRecipesController extends NavigationController implements Initia
         }
         recipeIngredients.setItems(itemList);               //Sets the listview to show the ingredients that matches the search
     }                                                       //Criteria
-
-    @Override
-    public String getFxml() {
-        return VistaNavigator.EDITRECIPES;
-    }
 }
