@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.IngredientManagerController">
+   <children>
+      <HBox>
+         <children>
+            <VBox>
+               <children>
+                  <TextField fx:id="searchField" onKeyPressed="#updateIngredientList" promptText="Search" />
+                  <ListView fx:id="ingredientList" onMouseClicked="#loadIngredientData" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+            <Region prefWidth="80.0" />
+            <VBox spacing="20.0">
+               <children>
+                  <TextField fx:id="nameField" promptText="Name" />
+                  <TextField fx:id="typeField" promptText="Type" />
+                  <TextField fx:id="unitField" promptText="Unit" />
+                  <HBox spacing="5.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#addSubmit" text="Add/Submit" />
+                        <Button mnemonicParsing="false" onAction="#remove" text="Remove" />
+                     </children>
+                  </HBox>
+               </children>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </children>
+</Pane>
